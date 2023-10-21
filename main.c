@@ -7,7 +7,6 @@
 #include <stdlib.h>
 
 #include "png.h"
-#include "gui.h"
 
 int main(int argc, char **argv)
 {
@@ -19,7 +18,11 @@ int main(int argc, char **argv)
     }
 
     png_print_information(png);
-    gui_display_image(png);
+	char *data = png_get_data(png);
 
+	for (int i = 0; i < png->width * png->height; i++) {
+		printf("%x ", data[i]);
+	}
+	puts("");
     exit(0);
 }
